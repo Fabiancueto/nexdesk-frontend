@@ -2,9 +2,9 @@
 
 import React from "react";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
-import { cn } from "../utils"; // ajusta la ruta si tu utils.js está en otra carpeta
+import { cn } from "./utils";
 
-export const Avatar = ({ className = "", ...props }) => {
+export function Avatar({ className = "", ...props }) {
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
@@ -15,9 +15,9 @@ export const Avatar = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const AvatarImage = ({ className = "", ...props }) => {
+export function AvatarImage({ className = "", ...props }) {
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
@@ -25,9 +25,9 @@ export const AvatarImage = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const AvatarFallback = ({ className = "", ...props }) => {
+export function AvatarFallback({ className = "", ...props }) {
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
@@ -38,4 +38,5 @@ export const AvatarFallback = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}
+

@@ -34,24 +34,25 @@ export const Usuarios = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const toggleUserStatus = (id) => {
-    setUsers(users.map(user =>
+    setUsers(users.map((user) =>
       user.id === id ? { ...user, active: !user.active } : user
     ));
   };
 
-  const filteredUsers = users.filter(user =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const getRoleBadgeColor = (role) => {
     switch (role) {
       case 'Admin':
-        return 'bg-gradient-to-r from-[#3CA2A2] to-[#00285F] text-white';
+        return 'bg-[#3CA2A2] text-white';
       case 'Editor':
-        return 'bg-gradient-to-r from-blue-500 to-[#3CA2A2] text-white';
+        return 'bg-blue-500 text-white';
       default:
-        return 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300';
+        return 'bg-gray-200 text-gray-700';
     }
   };
 
@@ -62,7 +63,6 @@ export const Usuarios = () => {
       transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
       className="space-y-8"
     >
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-gray-900 dark:text-white mb-2">Usuarios permitidos</h1>
@@ -70,54 +70,51 @@ export const Usuarios = () => {
             Administra los usuarios y sus permisos
           </p>
         </div>
-        <Button className="bg-gradient-to-r from-[#3CA2A2] to-[#00285F] hover:shadow-lg hover:shadow-[#3CA2A2]/50 transition-all duration-300">
+        <Button className="bg-[#3CA2A2] text-white hover:bg-[#358f8f] transition-all duration-200">
           <UserPlus className="w-4 h-4 mr-2" />
           Agregar usuario
         </Button>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
+        <Card className="border-gray-200 bg-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-[#3CA2A2]/10 to-[#00285F]/10">
+              <div className="p-3 rounded-lg bg-[#3CA2A2]/10">
                 <Users className="w-6 h-6 text-[#3CA2A2]" />
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total usuarios</p>
-                <h3 className="text-gray-900 dark:text-white mt-1">{users.length}</h3>
+                <p className="text-sm text-gray-600">Total usuarios</p>
+                <h3 className="text-gray-900 mt-1">{users.length}</h3>
               </div>
             </div>
           </CardContent>
         </Card>
-
-        <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
+        <Card className="border-gray-200 bg-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10">
-                <Users className="w-6 h-6 text-green-500" />
+              <div className="p-3 rounded-lg bg-[#3CA2A2]/10">
+                <Users className="w-6 h-6 text-[#3CA2A2]" />
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Activos</p>
-                <h3 className="text-gray-900 dark:text-white mt-1">
-                  {users.filter(u => u.active).length}
+                <p className="text-sm text-gray-600">Activos</p>
+                <h3 className="text-gray-900 mt-1">
+                  {users.filter((u) => u.active).length}
                 </h3>
               </div>
             </div>
           </CardContent>
         </Card>
-
-        <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
+        <Card className="border-gray-200 bg-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-gray-500/10 to-gray-600/10">
-                <Users className="w-6 h-6 text-gray-500" />
+              <div className="p-3 rounded-lg bg-gray-500/10">
+                <Users className="w-6 h-6 text-[#666666]" />
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Inactivos</p>
-                <h3 className="text-gray-900 dark:text-white mt-1">
-                  {users.filter(u => !u.active).length}
+                <p className="text-sm text-gray-600">Inactivos</p>
+                <h3 className="text-gray-900 mt-1">
+                  {users.filter((u) => !u.active).length}
                 </h3>
               </div>
             </div>
@@ -125,7 +122,6 @@ export const Usuarios = () => {
         </Card>
       </div>
 
-      {/* Users Table */}
       <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
         <CardHeader>
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -147,7 +143,6 @@ export const Usuarios = () => {
             </div>
           </div>
         </CardHeader>
-
         <CardContent>
           <div className="overflow-x-auto">
             <Table>
@@ -161,7 +156,6 @@ export const Usuarios = () => {
                   <TableHead className="text-gray-700 dark:text-gray-300"></TableHead>
                 </TableRow>
               </TableHeader>
-
               <TableBody>
                 {filteredUsers.map((user) => (
                   <TableRow key={user.id} className="border-gray-200 dark:border-gray-800">
@@ -186,10 +180,7 @@ export const Usuarios = () => {
                             <MoreVertical className="w-4 h-4" />
                           </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent
-                          align="end"
-                          className="bg-white dark:bg-[#1E1E1E] border-gray-200 dark:border-gray-800"
-                        >
+                        <DropdownMenuContent align="end" className="bg-white dark:bg-[#1E1E1E] border-gray-200 dark:border-gray-800">
                           <DropdownMenuItem className="text-gray-700 dark:text-gray-300">
                             <Edit className="w-4 h-4 mr-2" />
                             Editar

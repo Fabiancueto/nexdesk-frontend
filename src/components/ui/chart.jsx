@@ -1,23 +1,22 @@
 "use client";
 
-import React, { useContext, useMemo, useId } from "react";
+import React from "react";
 import * as RechartsPrimitive from "recharts";
-import { cn } from "../utils"; // ajusta si utils.js está en otra ruta
+import { cn } from "./utils";
 
-// 🎨 Temas disponibles
+// Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" };
 
 const ChartContext = React.createContext(null);
 
 export const useChart = () => {
-  const context = useContext(ChartContext);
+  const context = React.useContext(ChartContext);
   if (!context) {
     throw new Error("useChart must be used within a <ChartContainer />");
   }
   return context;
 };
 
-// 🧩 Contenedor principal del gráfico
 export const ChartContainer = ({
   id,
   className = "",
@@ -25,7 +24,7 @@ export const ChartContainer = ({
   config,
   ...props
 }) => {
-  const uniqueId = useId();
+  const uniqueId = React.useId();
   const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
 
   return (
@@ -46,10 +45,9 @@ export const ChartContainer = ({
   );
 };
 
-// 🎨 Genera variables CSS según el tema y config
-export const ChartStyle = ({ id, config }) => {
+const ChartStyle = ({ id, config }) => {
   const colorConfig = Object.entries(config).filter(
-    ([, conf]) => conf.theme || conf.color
+    ([, c]) => c.theme || c.color
   );
 
   if (!colorConfig.length) return null;
@@ -62,10 +60,9 @@ export const ChartStyle = ({ id, config }) => {
             ([theme, prefix]) => `
 ${prefix} [data-chart=${id}] {
 ${colorConfig
-  .map(([key, conf]) => {
+  .map(([key, itemConfig]) => {
     const color =
-      conf.theme?.[theme] ||
-      conf.color;
+      itemConfig.theme?.[theme] || itemConfig.color;
     return color ? `  --color-${key}: ${color};` : null;
   })
   .join("\n")}
@@ -78,10 +75,8 @@ ${colorConfig
   );
 };
 
-// 🧰 Tooltip base de Recharts
 export const ChartTooltip = RechartsPrimitive.Tooltip;
 
-// 🧾 Tooltip personalizado
 export const ChartTooltipContent = ({
   active,
   payload,
@@ -91,7 +86,7 @@ export const ChartTooltipContent = ({
   hideIndicator = false,
   label,
   labelFormatter,
-  labelClassName = "",
+  labelClassName,
   formatter,
   color,
   nameKey,
@@ -99,7 +94,7 @@ export const ChartTooltipContent = ({
 }) => {
   const { config } = useChart();
 
-  const tooltipLabel = useMemo(() => {
+  const tooltipLabel = React.useMemo(() => {
     if (hideLabel || !payload?.length) return null;
 
     const [item] = payload;
@@ -110,20 +105,19 @@ export const ChartTooltipContent = ({
         ? config[label]?.label || label
         : itemConfig?.label;
 
-    if (labelFormatter)
+    if (labelFormatter) {
       return (
         <div className={cn("font-medium", labelClassName)}>
           {labelFormatter(value, payload)}
         </div>
       );
+    }
 
     if (!value) return null;
-
     return <div className={cn("font-medium", labelClassName)}>{value}</div>;
   }, [label, labelFormatter, payload, hideLabel, labelClassName, config, labelKey]);
 
   if (!active || !payload?.length) return null;
-
   const nestLabel = payload.length === 1 && indicator !== "dot";
 
   return (
@@ -202,10 +196,8 @@ export const ChartTooltipContent = ({
   );
 };
 
-// 📊 Leyenda del gráfico
 export const ChartLegend = RechartsPrimitive.Legend;
 
-// 🏷️ Leyenda personalizada
 export const ChartLegendContent = ({
   className = "",
   hideIcon = false,
@@ -214,7 +206,6 @@ export const ChartLegendContent = ({
   nameKey,
 }) => {
   const { config } = useChart();
-
   if (!payload?.length) return null;
 
   return (
@@ -252,12 +243,12 @@ export const ChartLegendContent = ({
   );
 };
 
-// 🧠 Helper para leer configuración de payload
+// Helper to extract config from Recharts payload
 function getPayloadConfigFromPayload(config, payload, key) {
   if (typeof payload !== "object" || payload === null) return undefined;
 
   const payloadPayload =
-    "payload" in payload && typeof payload.payload === "object"
+    payload.payload && typeof payload.payload === "object"
       ? payload.payload
       : undefined;
 
@@ -273,7 +264,9 @@ function getPayloadConfigFromPayload(config, payload, key) {
     configLabelKey = payloadPayload[key];
   }
 
-  return configLabelKey in config
-    ? config[configLabelKey]
-    : config[key];
+  return config[configLabelKey] || config[key];
 }
+
+export {
+  ChartStyle,
+};

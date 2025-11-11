@@ -2,7 +2,7 @@
 
 import React from "react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
-import { cn } from "../utils";
+import { cn } from "./utils";
 
 export const Popover = (props) => (
   <PopoverPrimitive.Root data-slot="popover" {...props} />
@@ -13,7 +13,7 @@ export const PopoverTrigger = (props) => (
 );
 
 export const PopoverContent = ({
-  className,
+  className = "",
   align = "center",
   sideOffset = 4,
   ...props

@@ -1,19 +1,15 @@
 import React from "react";
 import { cva } from "class-variance-authority";
-import { cn } from "../utils"; // ajusta la ruta si utils.js está en otro nivel
+import { cn } from "./utils";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border px-4 py-3 text-sm grid " +
-    "has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] " +
-    "has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:w-4 [&>svg]:h-4 " +
-    "[&>svg]:translate-y-0.5 [&>svg]:text-current",
+  "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
   {
     variants: {
       variant: {
         default: "bg-card text-card-foreground",
         destructive:
-          "text-destructive bg-card [&>svg]:text-current " +
-          "*:data-[slot=alert-description]:text-destructive/90",
+          "text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90",
       },
     },
     defaultVariants: {
@@ -22,7 +18,7 @@ const alertVariants = cva(
   }
 );
 
-export const Alert = ({ className = "", variant = "default", ...props }) => {
+export function Alert({ className, variant, ...props }) {
   return (
     <div
       data-slot="alert"
@@ -31,9 +27,9 @@ export const Alert = ({ className = "", variant = "default", ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const AlertTitle = ({ className = "", ...props }) => {
+export function AlertTitle({ className, ...props }) {
   return (
     <div
       data-slot="alert-title"
@@ -44,9 +40,9 @@ export const AlertTitle = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const AlertDescription = ({ className = "", ...props }) => {
+export function AlertDescription({ className, ...props }) {
   return (
     <div
       data-slot="alert-description"
@@ -57,4 +53,4 @@ export const AlertDescription = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}

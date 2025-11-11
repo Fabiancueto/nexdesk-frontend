@@ -3,7 +3,7 @@
 import React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
-import { cn } from "../utils";
+import { cn } from "./utils";
 
 export const Sheet = (props) => (
   <SheetPrimitive.Root data-slot="sheet" {...props} />
@@ -21,7 +21,7 @@ export const SheetPortal = (props) => (
   <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />
 );
 
-export const SheetOverlay = ({ className, ...props }) => (
+export const SheetOverlay = ({ className = "", ...props }) => (
   <SheetPrimitive.Overlay
     data-slot="sheet-overlay"
     className={cn(
@@ -33,7 +33,7 @@ export const SheetOverlay = ({ className, ...props }) => (
 );
 
 export const SheetContent = ({
-  className,
+  className = "",
   children,
   side = "right",
   ...props
@@ -65,7 +65,7 @@ export const SheetContent = ({
   </SheetPortal>
 );
 
-export const SheetHeader = ({ className, ...props }) => (
+export const SheetHeader = ({ className = "", ...props }) => (
   <div
     data-slot="sheet-header"
     className={cn("flex flex-col gap-1.5 p-4", className)}
@@ -73,7 +73,7 @@ export const SheetHeader = ({ className, ...props }) => (
   />
 );
 
-export const SheetFooter = ({ className, ...props }) => (
+export const SheetFooter = ({ className = "", ...props }) => (
   <div
     data-slot="sheet-footer"
     className={cn("mt-auto flex flex-col gap-2 p-4", className)}
@@ -81,7 +81,7 @@ export const SheetFooter = ({ className, ...props }) => (
   />
 );
 
-export const SheetTitle = ({ className, ...props }) => (
+export const SheetTitle = ({ className = "", ...props }) => (
   <SheetPrimitive.Title
     data-slot="sheet-title"
     className={cn("text-foreground font-semibold", className)}
@@ -89,7 +89,7 @@ export const SheetTitle = ({ className, ...props }) => (
   />
 );
 
-export const SheetDescription = ({ className, ...props }) => (
+export const SheetDescription = ({ className = "", ...props }) => (
   <SheetPrimitive.Description
     data-slot="sheet-description"
     className={cn("text-muted-foreground text-sm", className)}

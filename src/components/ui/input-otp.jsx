@@ -3,9 +3,13 @@
 import React, { useContext } from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
 import { MinusIcon } from "lucide-react";
-import { cn } from "../utils";
+import { cn } from "./utils";
 
-export const InputOTP = ({ className, containerClassName, ...props }) => (
+export const InputOTP = ({
+  className = "",
+  containerClassName = "",
+  ...props
+}) => (
   <OTPInput
     data-slot="input-otp"
     containerClassName={cn(
@@ -17,7 +21,7 @@ export const InputOTP = ({ className, containerClassName, ...props }) => (
   />
 );
 
-export const InputOTPGroup = ({ className, ...props }) => (
+export const InputOTPGroup = ({ className = "", ...props }) => (
   <div
     data-slot="input-otp-group"
     className={cn("flex items-center gap-1", className)}
@@ -25,7 +29,7 @@ export const InputOTPGroup = ({ className, ...props }) => (
   />
 );
 
-export const InputOTPSlot = ({ index, className, ...props }) => {
+export const InputOTPSlot = ({ index, className = "", ...props }) => {
   const inputOTPContext = useContext(OTPInputContext);
   const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {};
 

@@ -2,9 +2,9 @@
 
 import React from "react";
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
-import { cn } from "../utils";
+import { cn } from "./utils";
 
-export const ScrollArea = ({ className, children, ...props }) => (
+export const ScrollArea = ({ className = "", children, ...props }) => (
   <ScrollAreaPrimitive.Root
     data-slot="scroll-area"
     className={cn("relative", className)}
@@ -22,7 +22,7 @@ export const ScrollArea = ({ className, children, ...props }) => (
 );
 
 export const ScrollBar = ({
-  className,
+  className = "",
   orientation = "vertical",
   ...props
 }) => (

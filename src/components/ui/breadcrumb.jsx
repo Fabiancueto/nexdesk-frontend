@@ -1,13 +1,13 @@
 import React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRight, MoreHorizontal } from "lucide-react";
-import { cn } from "../utils"; // ajusta la ruta si tu utils.js está en otra carpeta
+import { cn } from "./utils";
 
-export const Breadcrumb = (props) => {
+export function Breadcrumb(props) {
   return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />;
-};
+}
 
-export const BreadcrumbList = ({ className = "", ...props }) => {
+export function BreadcrumbList({ className = "", ...props }) {
   return (
     <ol
       data-slot="breadcrumb-list"
@@ -18,9 +18,9 @@ export const BreadcrumbList = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const BreadcrumbItem = ({ className = "", ...props }) => {
+export function BreadcrumbItem({ className = "", ...props }) {
   return (
     <li
       data-slot="breadcrumb-item"
@@ -28,9 +28,9 @@ export const BreadcrumbItem = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const BreadcrumbLink = ({ asChild = false, className = "", ...props }) => {
+export function BreadcrumbLink({ asChild = false, className = "", ...props }) {
   const Comp = asChild ? Slot : "a";
   return (
     <Comp
@@ -39,9 +39,9 @@ export const BreadcrumbLink = ({ asChild = false, className = "", ...props }) =>
       {...props}
     />
   );
-};
+}
 
-export const BreadcrumbPage = ({ className = "", ...props }) => {
+export function BreadcrumbPage({ className = "", ...props }) {
   return (
     <span
       data-slot="breadcrumb-page"
@@ -52,23 +52,23 @@ export const BreadcrumbPage = ({ className = "", ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const BreadcrumbSeparator = ({ children, className = "", ...props }) => {
+export function BreadcrumbSeparator({ children, className = "", ...props }) {
   return (
     <li
       data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
-      className={cn("[&>svg]:w-3.5 [&>svg]:h-3.5", className)}
+      className={cn("[&>svg]:size-3.5", className)}
       {...props}
     >
       {children ?? <ChevronRight />}
     </li>
   );
-};
+}
 
-export const BreadcrumbEllipsis = ({ className = "", ...props }) => {
+export function BreadcrumbEllipsis({ className = "", ...props }) {
   return (
     <span
       data-slot="breadcrumb-ellipsis"
@@ -78,7 +78,7 @@ export const BreadcrumbEllipsis = ({ className = "", ...props }) => {
       {...props}
     >
       <MoreHorizontal className="w-4 h-4" />
-      <span className="sr-only">Más</span>
+      <span className="sr-only">More</span>
     </span>
   );
-};
+}

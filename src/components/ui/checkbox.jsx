@@ -3,7 +3,7 @@
 import React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { CheckIcon } from "lucide-react";
-import { cn } from "../utils"; // ajusta la ruta según tu estructura
+import { cn } from "./utils";
 
 export const Checkbox = ({ className = "", ...props }) => {
   return (
@@ -19,7 +19,7 @@ export const Checkbox = ({ className = "", ...props }) => {
         data-slot="checkbox-indicator"
         className="flex items-center justify-center text-current transition-none"
       >
-        <CheckIcon className="w-3.5 h-3.5" />
+        <CheckIcon className="size-3.5" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

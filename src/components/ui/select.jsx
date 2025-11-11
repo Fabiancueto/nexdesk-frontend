@@ -3,7 +3,7 @@
 import React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-import { cn } from "../utils";
+import { cn } from "./utils";
 
 export const Select = (props) => (
   <SelectPrimitive.Root data-slot="select" {...props} />
@@ -18,7 +18,7 @@ export const SelectValue = (props) => (
 );
 
 export const SelectTrigger = ({
-  className,
+  className = "",
   size = "default",
   children,
   ...props
@@ -40,7 +40,7 @@ export const SelectTrigger = ({
 );
 
 export const SelectContent = ({
-  className,
+  className = "",
   children,
   position = "popper",
   ...props
@@ -72,7 +72,7 @@ export const SelectContent = ({
   </SelectPrimitive.Portal>
 );
 
-export const SelectLabel = ({ className, ...props }) => (
+export const SelectLabel = ({ className = "", ...props }) => (
   <SelectPrimitive.Label
     data-slot="select-label"
     className={cn("text-muted-foreground px-2 py-1.5 text-xs", className)}
@@ -80,7 +80,7 @@ export const SelectLabel = ({ className, ...props }) => (
   />
 );
 
-export const SelectItem = ({ className, children, ...props }) => (
+export const SelectItem = ({ className = "", children, ...props }) => (
   <SelectPrimitive.Item
     data-slot="select-item"
     className={cn(
@@ -98,7 +98,7 @@ export const SelectItem = ({ className, children, ...props }) => (
   </SelectPrimitive.Item>
 );
 
-export const SelectSeparator = ({ className, ...props }) => (
+export const SelectSeparator = ({ className = "", ...props }) => (
   <SelectPrimitive.Separator
     data-slot="select-separator"
     className={cn("bg-border pointer-events-none -mx-1 my-1 h-px", className)}
@@ -106,7 +106,7 @@ export const SelectSeparator = ({ className, ...props }) => (
   />
 );
 
-export const SelectScrollUpButton = ({ className, ...props }) => (
+export const SelectScrollUpButton = ({ className = "", ...props }) => (
   <SelectPrimitive.ScrollUpButton
     data-slot="select-scroll-up-button"
     className={cn("flex cursor-default items-center justify-center py-1", className)}
@@ -116,7 +116,7 @@ export const SelectScrollUpButton = ({ className, ...props }) => (
   </SelectPrimitive.ScrollUpButton>
 );
 
-export const SelectScrollDownButton = ({ className, ...props }) => (
+export const SelectScrollDownButton = ({ className = "", ...props }) => (
   <SelectPrimitive.ScrollDownButton
     data-slot="select-scroll-down-button"
     className={cn("flex cursor-default items-center justify-center py-1", className)}
@@ -125,3 +125,4 @@ export const SelectScrollDownButton = ({ className, ...props }) => (
     <ChevronDownIcon className="size-4" />
   </SelectPrimitive.ScrollDownButton>
 );
+

@@ -2,21 +2,7 @@ import React from 'react';
 import { motion } from "framer-motion";
 import { BarChart3, TrendingUp, Users, Clock, Award } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
-import {
-  BarChart,
-  Bar,
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
-  Cell,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from 'recharts';
+import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const ticketsByStatus = [
   { name: 'Abiertos', value: 12, color: '#3B82F6' },
@@ -64,7 +50,6 @@ export const Dashboards = () => {
       transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
       className="space-y-8"
     >
-      {/* Header */}
       <div>
         <h1 className="text-gray-900 dark:text-white mb-2">Dashboards</h1>
         <p className="text-gray-600 dark:text-gray-400">
@@ -72,40 +57,36 @@ export const Dashboards = () => {
         </p>
       </div>
 
-      {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.05, ease: [0.4, 0.0, 0.2, 1] }}
-          >
-            <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color}`}>
-                    <stat.icon className="w-5 h-5 text-white" />
+        {stats.map((stat, index) => {
+          const Icon = stat.icon;
+          return (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.05, ease: [0.4, 0.0, 0.2, 1] }}
+            >
+              <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${stat.color}`}>
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <span className={`text-sm ${stat.change.startsWith('+') ? 'text-[#3CA2A2]' : 'text-blue-500'}`}>
+                      {stat.change}
+                    </span>
                   </div>
-                  <span
-                    className={`text-sm ${
-                      stat.change.startsWith('+') ? 'text-[#3CA2A2]' : 'text-blue-500'
-                    }`}
-                  >
-                    {stat.change}
-                  </span>
-                </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</p>
-                <h3 className="text-gray-900 dark:text-white mt-1">{stat.value}</h3>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</p>
+                  <h3 className="text-gray-900 dark:text-white mt-1">{stat.value}</h3>
+                </CardContent>
+              </Card>
+            </motion.div>
+          );
+        })}
       </div>
 
-      {/* Charts Row 1 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Tickets por estatus */}
         <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -145,7 +126,6 @@ export const Dashboards = () => {
           </CardContent>
         </Card>
 
-        {/* Tickets mensuales */}
         <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
           <CardHeader>
             <div className="flex items-center gap-3">
@@ -178,16 +158,12 @@ export const Dashboards = () => {
         </Card>
       </div>
 
-      {/* Charts Row 2 */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Tiempo promedio de respuesta */}
         <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E] lg:col-span-2">
           <CardHeader>
             <div className="flex items-center gap-3">
               <Clock className="w-5 h-5 text-[#3CA2A2]" />
-              <CardTitle className="text-gray-900 dark:text-white">
-                Tiempo promedio de respuesta
-              </CardTitle>
+              <CardTitle className="text-gray-900 dark:text-white">Tiempo promedio de respuesta</CardTitle>
             </div>
             <CardDescription className="text-gray-600 dark:text-gray-400">
               Tiempo de respuesta por día (en horas)
@@ -221,7 +197,6 @@ export const Dashboards = () => {
           </CardContent>
         </Card>
 
-        {/* Top performers */}
         <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
           <CardHeader>
             <div className="flex items-center gap-3">

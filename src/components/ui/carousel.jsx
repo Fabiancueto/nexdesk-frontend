@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { cn } from "../utils"; // ajusta la ruta si tu utils.js está en otra carpeta
+import { cn } from "./utils";
 import { Button } from "./button";
 
 const CarouselContext = React.createContext(null);
@@ -18,20 +18,17 @@ export const useCarousel = () => {
 
 export const Carousel = ({
   orientation = "horizontal",
-  opts,
+  opts = {},
   setApi,
   plugins,
   className = "",
   children,
   ...props
 }) => {
-  const [carouselRef, api] = useEmblaCarousel(
-    {
-      ...opts,
-      axis: orientation === "horizontal" ? "x" : "y",
-    },
-    plugins
-  );
+  const [carouselRef, api] = useEmblaCarousel({
+    ...opts,
+    axis: orientation === "horizontal" ? "x" : "y",
+  }, plugins);
 
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -199,3 +196,4 @@ export const CarouselNext = ({
     </Button>
   );
 };
+

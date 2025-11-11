@@ -53,7 +53,6 @@ export const Alias = () => {
       transition={{ duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }}
       className="space-y-8"
     >
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-gray-900 dark:text-white mb-2">Alias de correo</h1>
@@ -61,51 +60,50 @@ export const Alias = () => {
             Gestiona los alias de correo electrónico del equipo
           </p>
         </div>
-        <Button className="bg-gradient-to-r from-[#3CA2A2] to-[#00285F] hover:shadow-lg hover:shadow-[#3CA2A2]/50 transition-all duration-300">
+        <Button className="bg-[#3CA2A2] text-white hover:bg-[#358f8f] transition-all duration-200">
           <Plus className="w-4 h-4 mr-2" />
           Agregar alias
         </Button>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
+        <Card className="border-gray-200 bg-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-[#3CA2A2]/10 to-[#00285F]/10">
+              <div className="p-3 rounded-lg bg-[#3CA2A2]/10">
                 <Mail className="w-6 h-6 text-[#3CA2A2]" />
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Total alias</p>
-                <h3 className="text-gray-900 dark:text-white mt-1">{aliases.length}</h3>
+                <p className="text-sm text-gray-600">Total alias</p>
+                <h3 className="text-gray-900 mt-1">{aliases.length}</h3>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
+        <Card className="border-gray-200 bg-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-green-500/10 to-emerald-500/10">
-                <Mail className="w-6 h-6 text-green-500" />
+              <div className="p-3 rounded-lg bg-[#3CA2A2]/10">
+                <Mail className="w-6 h-6 text-[#3CA2A2]" />
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Activos</p>
-                <h3 className="text-gray-900 dark:text-white mt-1">
+                <p className="text-sm text-gray-600">Activos</p>
+                <h3 className="text-gray-900 mt-1">
                   {aliases.filter(a => a.active).length}
                 </h3>
               </div>
             </div>
           </CardContent>
         </Card>
-        <Card className="border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E]">
+        <Card className="border-gray-200 bg-white shadow-sm">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/10 to-[#3CA2A2]/10">
+              <div className="p-3 rounded-lg bg-blue-500/10">
                 <Mail className="w-6 h-6 text-blue-500" />
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">Reenvíos</p>
-                <h3 className="text-gray-900 dark:text-white mt-1">
+                <p className="text-sm text-gray-600">Reenvíos</p>
+                <h3 className="text-gray-900 mt-1">
                   {aliases.reduce((sum, a) => sum + a.forwardTo.length, 0)}
                 </h3>
               </div>
@@ -114,7 +112,6 @@ export const Alias = () => {
         </Card>
       </div>
 
-      {/* Aliases List */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {aliases.map((alias, index) => (
           <motion.div

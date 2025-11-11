@@ -3,15 +3,16 @@
 import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
-import { cn } from "../utils"; // ajusta si utils.js está en otra ruta
+
+import { cn } from "./utils";
 import { buttonVariants } from "./button";
 
-export const Calendar = ({
+export function Calendar({
   className = "",
   classNames = {},
   showOutsideDays = true,
   ...props
-}) => {
+}) {
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -59,14 +60,14 @@ export const Calendar = ({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ className, ...iconProps }) => (
-          <ChevronLeft className={cn("w-4 h-4", className)} {...iconProps} />
+        IconLeft: ({ className, ...props }) => (
+          <ChevronLeft className={cn("w-4 h-4", className)} {...props} />
         ),
-        IconRight: ({ className, ...iconProps }) => (
-          <ChevronRight className={cn("w-4 h-4", className)} {...iconProps} />
+        IconRight: ({ className, ...props }) => (
+          <ChevronRight className={cn("w-4 h-4", className)} {...props} />
         ),
       }}
       {...props}
     />
   );
-};
+}

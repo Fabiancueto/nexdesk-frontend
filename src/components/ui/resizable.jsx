@@ -3,9 +3,9 @@
 import React from "react";
 import { GripVerticalIcon } from "lucide-react";
 import * as ResizablePrimitive from "react-resizable-panels";
-import { cn } from "../utils";
+import { cn } from "./utils";
 
-export const ResizablePanelGroup = ({ className, ...props }) => (
+export const ResizablePanelGroup = ({ className = "", ...props }) => (
   <ResizablePrimitive.PanelGroup
     data-slot="resizable-panel-group"
     className={cn(
@@ -21,8 +21,8 @@ export const ResizablePanel = (props) => (
 );
 
 export const ResizableHandle = ({
-  withHandle,
-  className,
+  withHandle = false,
+  className = "",
   ...props
 }) => (
   <ResizablePrimitive.PanelResizeHandle
@@ -40,3 +40,4 @@ export const ResizableHandle = ({
     )}
   </ResizablePrimitive.PanelResizeHandle>
 );
+

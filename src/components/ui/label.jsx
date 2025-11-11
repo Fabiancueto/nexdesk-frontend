@@ -2,9 +2,9 @@
 
 import React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
-import { cn } from "../utils";
+import { cn } from "./utils";
 
-export const Label = ({ className, ...props }) => (
+export const Label = ({ className = "", ...props }) => (
   <LabelPrimitive.Root
     data-slot="label"
     className={cn(

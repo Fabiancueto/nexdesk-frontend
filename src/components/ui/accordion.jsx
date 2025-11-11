@@ -3,13 +3,13 @@
 import React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "lucide-react";
-import { cn } from "../utils"; // ajusta la ruta si utils.js está en otro nivel
+import { cn } from "./utils";
 
-export const Accordion = (props) => {
+export function Accordion(props) {
   return <AccordionPrimitive.Root data-slot="accordion" {...props} />;
-};
+}
 
-export const AccordionItem = ({ className, ...props }) => {
+export function AccordionItem({ className, ...props }) {
   return (
     <AccordionPrimitive.Item
       data-slot="accordion-item"
@@ -17,9 +17,9 @@ export const AccordionItem = ({ className, ...props }) => {
       {...props}
     />
   );
-};
+}
 
-export const AccordionTrigger = ({ className, children, ...props }) => {
+export function AccordionTrigger({ className, children, ...props }) {
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
@@ -31,13 +31,13 @@ export const AccordionTrigger = ({ className, children, ...props }) => {
         {...props}
       >
         {children}
-        <ChevronDownIcon className="text-muted-foreground pointer-events-none w-4 h-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
+        <ChevronDownIcon className="text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
-};
+}
 
-export const AccordionContent = ({ className, children, ...props }) => {
+export function AccordionContent({ className, children, ...props }) {
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
@@ -47,4 +47,5 @@ export const AccordionContent = ({ className, children, ...props }) => {
       <div className={cn("pt-0 pb-4", className)}>{children}</div>
     </AccordionPrimitive.Content>
   );
-};
+}
+

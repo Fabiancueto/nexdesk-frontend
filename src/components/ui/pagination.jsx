@@ -1,11 +1,9 @@
-"use client";
-
 import React from "react";
 import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react";
-import { cn } from "../utils";
-import { Button, buttonVariants } from "../button";
+import { cn } from "./utils";
+import { Button, buttonVariants } from "./button";
 
-export const Pagination = ({ className, ...props }) => (
+export const Pagination = ({ className = "", ...props }) => (
   <nav
     role="navigation"
     aria-label="pagination"
@@ -15,7 +13,7 @@ export const Pagination = ({ className, ...props }) => (
   />
 );
 
-export const PaginationContent = ({ className, ...props }) => (
+export const PaginationContent = ({ className = "", ...props }) => (
   <ul
     data-slot="pagination-content"
     className={cn("flex flex-row items-center gap-1", className)}
@@ -25,12 +23,7 @@ export const PaginationContent = ({ className, ...props }) => (
 
 export const PaginationItem = (props) => <li data-slot="pagination-item" {...props} />;
 
-export const PaginationLink = ({
-  className,
-  isActive,
-  size = "icon",
-  ...props
-}) => (
+export const PaginationLink = ({ className = "", isActive, size = "icon", ...props }) => (
   <a
     aria-current={isActive ? "page" : undefined}
     data-slot="pagination-link"
@@ -46,7 +39,7 @@ export const PaginationLink = ({
   />
 );
 
-export const PaginationPrevious = ({ className, ...props }) => (
+export const PaginationPrevious = ({ className = "", ...props }) => (
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
@@ -58,7 +51,7 @@ export const PaginationPrevious = ({ className, ...props }) => (
   </PaginationLink>
 );
 
-export const PaginationNext = ({ className, ...props }) => (
+export const PaginationNext = ({ className = "", ...props }) => (
   <PaginationLink
     aria-label="Go to next page"
     size="default"
@@ -70,7 +63,7 @@ export const PaginationNext = ({ className, ...props }) => (
   </PaginationLink>
 );
 
-export const PaginationEllipsis = ({ className, ...props }) => (
+export const PaginationEllipsis = ({ className = "", ...props }) => (
   <span
     aria-hidden
     data-slot="pagination-ellipsis"

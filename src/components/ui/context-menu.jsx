@@ -3,7 +3,7 @@
 import React from "react";
 import * as ContextMenuPrimitive from "@radix-ui/react-context-menu";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
-import { cn } from "../utils"; // Ajusta la ruta según tu estructura
+import { cn } from "./utils";
 
 export const ContextMenu = (props) => (
   <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />
@@ -33,7 +33,7 @@ export const ContextMenuRadioGroup = (props) => (
 );
 
 export const ContextMenuSubTrigger = ({
-  className,
+  className = "",
   inset,
   children,
   ...props
@@ -52,23 +52,23 @@ export const ContextMenuSubTrigger = ({
   </ContextMenuPrimitive.SubTrigger>
 );
 
-export const ContextMenuSubContent = ({ className, ...props }) => (
+export const ContextMenuSubContent = ({ className = "", ...props }) => (
   <ContextMenuPrimitive.SubContent
     data-slot="context-menu-sub-content"
     className={cn(
-      "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 z-50 min-w-[8rem] origin-[--radix-context-menu-content-transform-origin] overflow-hidden rounded-md border p-1 shadow-lg",
+      "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 min-w-[8rem] origin-(--radix-context-menu-content-transform-origin) overflow-hidden rounded-md border p-1 shadow-lg",
       className
     )}
     {...props}
   />
 );
 
-export const ContextMenuContent = ({ className, ...props }) => (
+export const ContextMenuContent = ({ className = "", ...props }) => (
   <ContextMenuPrimitive.Portal>
     <ContextMenuPrimitive.Content
       data-slot="context-menu-content"
       className={cn(
-        "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 z-50 min-w-[8rem] origin-[--radix-context-menu-content-transform-origin] overflow-y-auto rounded-md border p-1 shadow-md",
+        "bg-popover text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 max-h-(--radix-context-menu-content-available-height) min-w-[8rem] origin-(--radix-context-menu-content-transform-origin) overflow-x-hidden overflow-y-auto rounded-md border p-1 shadow-md",
         className
       )}
       {...props}
@@ -77,7 +77,7 @@ export const ContextMenuContent = ({ className, ...props }) => (
 );
 
 export const ContextMenuItem = ({
-  className,
+  className = "",
   inset,
   variant = "default",
   ...props
@@ -87,7 +87,7 @@ export const ContextMenuItem = ({
     data-inset={inset}
     data-variant={variant}
     className={cn(
-      "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+      "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
       className
     )}
     {...props}
@@ -95,7 +95,7 @@ export const ContextMenuItem = ({
 );
 
 export const ContextMenuCheckboxItem = ({
-  className,
+  className = "",
   children,
   checked,
   ...props
@@ -118,7 +118,11 @@ export const ContextMenuCheckboxItem = ({
   </ContextMenuPrimitive.CheckboxItem>
 );
 
-export const ContextMenuRadioItem = ({ className, children, ...props }) => (
+export const ContextMenuRadioItem = ({
+  className = "",
+  children,
+  ...props
+}) => (
   <ContextMenuPrimitive.RadioItem
     data-slot="context-menu-radio-item"
     className={cn(
@@ -136,7 +140,7 @@ export const ContextMenuRadioItem = ({ className, children, ...props }) => (
   </ContextMenuPrimitive.RadioItem>
 );
 
-export const ContextMenuLabel = ({ className, inset, ...props }) => (
+export const ContextMenuLabel = ({ className = "", inset, ...props }) => (
   <ContextMenuPrimitive.Label
     data-slot="context-menu-label"
     data-inset={inset}
@@ -148,7 +152,7 @@ export const ContextMenuLabel = ({ className, inset, ...props }) => (
   />
 );
 
-export const ContextMenuSeparator = ({ className, ...props }) => (
+export const ContextMenuSeparator = ({ className = "", ...props }) => (
   <ContextMenuPrimitive.Separator
     data-slot="context-menu-separator"
     className={cn("bg-border -mx-1 my-1 h-px", className)}
@@ -156,7 +160,7 @@ export const ContextMenuSeparator = ({ className, ...props }) => (
   />
 );
 
-export const ContextMenuShortcut = ({ className, ...props }) => (
+export const ContextMenuShortcut = ({ className = "", ...props }) => (
   <span
     data-slot="context-menu-shortcut"
     className={cn(
@@ -166,3 +170,4 @@ export const ContextMenuShortcut = ({ className, ...props }) => (
     {...props}
   />
 );
+
