@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === VARIABLES GLOBALES === */
+:root {
+  --color-primary: #3CA2A2;
+  --color-secondary: #00285F;
+  --color-bg: #F8FAFC;
+  --color-text: #111827;
+  --color-dark-bg: #0D0D0D;
+  --color-dark-text: #FAFAFA;
+  --transition-default: 0.3s ease;
+}
+
+/* === RESETEO GENERAL === */
+* {
+  @apply m-0 p-0 box-border;
+}
+
+html, body, #root {
+  @apply h-full w-full overflow-x-hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  transition: background-color var(--transition-default), color var(--transition-default);
+}
+
+/* === DARK MODE === */
+.dark body {
+  background-color: var(--color-dark-bg);
+  color: var(--color-dark-text);
+}
+
+/* === SCROLLBAR PERSONALIZADO === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* === LINKS === */
+a {
+  @apply no-underline transition-colors duration-200;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* === BOTONES GRADIENTE === */
+.btn-gradient {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(60, 162, 162, 0.4);
+}
+
+/* === TARJETAS === */
+.card {
+  @apply rounded-2xl shadow-md border border-white/10 dark:border-gray-800 bg-white dark:bg-[#1E1E1E];
+  transition: transform var(--transition-default), box-shadow var(--transition-default);
+}
+
+.card:hover {
+  @apply shadow-lg;
+  transform: translateY(-4px);
+}
+
+/* === ENCABEZADOS === */
+h1, h2, h3, h4, h5, h6 {
+  @apply font-semibold text-gray-900 dark:text-gray-100;
+  letter-spacing: -0.02em;
+}
+
+/* === INPUTS === */
+input, textarea, select {
+  @apply rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-[#181818] text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500;
+  transition: border-color var(--transition-default), background-color var(--transition-default);
+}
+
+input:focus, textarea:focus, select:focus {
+  @apply border-[#3CA2A2] ring-1 ring-[#3CA2A2]/50 outline-none;
+}
+
+/* === ANIMACIONES === */
+.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === TABLAS === */
+table {
+  @apply w-full border-collapse text-sm;
+}
+
+th {
+  @apply text-left text-gray-600 dark:text-gray-300 font-medium py-3 px-4;
+}
+
+td {
+  @apply py-3 px-4 text-gray-700 dark:text-gray-200 border-t border-gray-200 dark:border-gray-800;
+}
+
+/* === DROPDOWN MENÚ === */
+.dropdown-content {
+  @apply rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1E1E1E] shadow-xl;
+}
+
+/* === BADGES === */
+.badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+}
+
+/* === ANIMACIONES DE MOTION.JS (fallback visual) === */
+.motion-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.motion-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s var(--transition-default);
+}

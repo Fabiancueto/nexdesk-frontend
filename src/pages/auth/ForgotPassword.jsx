@@ -1,0 +1,92 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
+import { Logo } from '../../components/Logo';
+import { Button } from '../../components/ui/button';
+import { Input } from '../../components/ui/input';
+import { Label } from '../../components/ui/label';
+
+export const ForgotPassword = () => {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
+      className="w-full"
+    >
+      <div className="bg-white/5 dark:bg-[#1E1E1E] backdrop-blur-xl rounded-[20px] shadow-2xl border border-white/10 dark:border-gray-800 p-8">
+        {/* Logo */}
+        <div className="flex justify-center mb-8">
+          <Logo height="48px" />
+        </div>
+
+        {/* Title */}
+        <div className="text-center mb-8">
+          <h2 className="text-[#FAFAFA] dark:text-[#FAFAFA] mb-2">Recuperar contraseña</h2>
+          <p className="text-gray-400">Ingresa tu correo para restablecer tu contraseña</p>
+        </div>
+
+        {/* Form or Success Message */}
+        {!submitted ? (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-gray-300">Correo electrónico</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Input
+                  id="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tu@email.com"
+                  className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-gray-500 focus:border-[#3CA2A2] focus:ring-[#3CA2A2]"
+                  required
+                />
+              </div>
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full bg-gradient-to-r from-[#3CA2A2] to-[#00285F] hover:shadow-lg hover:shadow-[#3CA2A2]/50 transition-all duration-300"
+            >
+              Enviar enlace
+            </Button>
+          </form>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center py-6"
+          >
+            <CheckCircle className="w-16 h-16 text-[#3CA2A2] mx-auto mb-4" />
+            <p className="text-gray-300 mb-2">¡Enlace enviado!</p>
+            <p className="text-sm text-gray-400">
+              Revisa tu correo para restablecer tu contraseña
+            </p>
+          </motion.div>
+        )}
+
+        {/* Back Link */}
+        <div className="mt-6 text-center">
+          <Link
+            to="/login"
+            className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-[#3CA2A2] transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Volver al inicio de sesión
+          </Link>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
